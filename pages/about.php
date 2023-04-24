@@ -11,25 +11,11 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <a href="#"
-           class="logo">Games Haven</a>
-        <ul class="nav">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./games.html">Games</a></li>
-            <li><a href="./login.html">Login</a></li>
-            <li><a href="./contact.html">Contact</a></li>
-        </ul>
-        <div class="action">
-            <div class="searchBx">
-                <a href="#"><i class='bx bx-search'></i></a>
-                <input type="text"
-                       placeholder="Search Games" />
-            </div>
-        </div>
-        <div class="toggleMenu" onclick="toggleMenu();"></div>
-    </header>
+    
+<?php
+    require "../components/header.php";
+    ?>
+
     <div class="about">
         <div class="contentBx">
             <h2>About Us</h2>
@@ -40,18 +26,9 @@
         <img src="../public/images/tlou.png">
     </div>
 
-    <footer>
-        <div class="info">
-            <a href="#" class="logo">Games Haven</a>
-            <p><i class='bx bxs-copyright'></i>2023 All Rights Reserved</p>
-            <ul>
-                <li><a href="#"><i class='bx bxl-facebook-circle'></i></a></li>
-                <li><a href="#"><i class='bx bxl-instagram' ></i></a></li>
-                <li><a href="#"><i class='bx bxl-twitter' ></i></a></li>
-                <li><a href="#"><i class='bx bxl-youtube' ></i></a></i></li>
-            </ul>
-        </div>
-    </footer>
+    <?php
+    require "../components/footer.php";
+    ?>
 
     <script>
         /* Sticky Navbar */
