@@ -18,7 +18,7 @@ $password = mysqli_real_escape_string($conn, $_POST['password']);
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert data into the database
-$sql = "INSERT INTO user (name, email, password) VALUES ('$username', '$email', '$hashedPassword')";
+$sql = "INSERT INTO user (name, email, password, role) VALUES ('$username', '$email', '$hashedPassword', 'user')";
 if (mysqli_query($conn, $sql)) {
     // Registration successful, provide appropriate feedback to the user
     $response = array(
@@ -32,10 +32,8 @@ if (mysqli_query($conn, $sql)) {
         'message' => mysqli_error($conn)
     );
 }
-
 header('Content-Type: application/json');
 echo json_encode($response);
 
 // Close database connection
 mysqli_close($conn);
-?>

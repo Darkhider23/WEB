@@ -27,7 +27,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #1b2141;
+      background: rgb(0,98,120);
+background: linear-gradient(180deg, rgba(0,98,120,1) 0%, rgba(0,60,91,1) 33%, #050e2d 100%);
       transition: 0.5s;
       z-index: 1000;
   }
@@ -70,11 +71,16 @@
   header .action .searchBx {
       padding: 5px;
       margin: 5px;
+      margin-left:50vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      max-width: 230px;
       background-color: #fff;
       border-radius: 5px;
+  }
+  .header-username{
+    color:#fff;
   }
 
   header .action .searchBx i {
@@ -447,6 +453,9 @@ footer .info ul li:hover a i{
     header{
         padding: 15px 40px;
     }
+    .header-username{
+        display: none;
+    }
     header .nav{
         position: fixed;
         top:0;
@@ -533,8 +542,8 @@ footer .info ul li:hover a i{
 	width:100%;
 	height: 100%;
 }
-.login-container label{
-	color: #fff;
+.login label{
+    color: #fff;
 	font-size: 2.7em;
 	justify-content: center;
 	display: flex;
@@ -543,17 +552,30 @@ footer .info ul li:hover a i{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
+.signup label{
+    color: #fff;
+	font-size: 2.7em;
+	justify-content: center;
+	display: flex;
+	margin: 40px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
 .login-container input{
+
 	width: 60%;
 	height: 30px;
 	background: #e0dede;
 	justify-content: center;
-	display: flex;
 	margin: 20px auto;
 	padding: 10px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
+}
+.email-container, .password-container, .username-container{
+    display: flex;
 }
 .login-container button{
 	width: 60%;
@@ -578,8 +600,8 @@ footer .info ul li:hover a i{
 .login{
 	height: 460px;
 	background: #eee;
-	border-radius: 60% / 10%;
-	transform: translateY(-180px);
+	border-radius: 50% / 8%;
+	transform: translateY(-160px);
 	transition: .8s ease-in-out;
 }
 .login label{
@@ -595,6 +617,16 @@ footer .info ul li:hover a i{
 }
 #chk:checked ~ .signup label{
 	transform: scale(.6);
+}
+
+.error{
+    position: absolute;
+    right:30px;
+    margin-top:2.5vh;
+    display: flex;
+    align-items: center;
+    color:red;
+    width: 30px;
 }
 
 .popup-container {

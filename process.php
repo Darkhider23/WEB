@@ -28,17 +28,21 @@ if (mysqli_num_rows($result) > 0) {
             'status' => 'success',
             'message' => 'Login successful!'
         );
+        $_SESSION['user_id'] = $row['iduser'];
+        $_SESSION['username'] = $row['name'];
+        $_SESSION['role'] = 'user';
+        
         // echo "Login Successful";
     } else {
         // Password does not match
-        
+
         $response = array(
             'status' => 'error',
             'message' => 'Login failed. Invalid Password.'
         );
     }
 } else {
-    
+
     // Email not found
     $response = array(
         'status' => 'error',

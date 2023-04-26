@@ -1,19 +1,15 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible"
-          content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
-          rel='stylesheet'>
-    <link href="../styles.css"
-          rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../styles.css" rel="stylesheet">
     <title>Game Library</title>
 </head>
 
@@ -29,8 +25,7 @@
             <div class="content">
                 <h2>A new home for <br>Gamers</h2>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni at, ad aliquam. </p>
-                <a href="./login.html"
-                   class="btn">Join now</a>
+                <a href="./login.html" class="btn">Join now</a>
             </div>
             <img src="../public/images/assassin.png">
         </div>
@@ -41,14 +36,14 @@
 
     <script>
         /* Sticky Navbar */
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             var header = document.querySelector('header');
             header.classList.toggle('sticky', window.scrollY > 0);
         });
 
         /* Responsive Navbar */
 
-        function toggleMenu(){
+        function toggleMenu() {
             const toggleMenu = document.querySelector('.toggleMenu');
             const nav = document.querySelector('.nav');
             toggleMenu.classList.toggle('active');
@@ -61,7 +56,7 @@
         let card = document.querySelectorAll('.card');
 
         for (let i = 0; i < list.length; i++) {
-            list[i].addEventListener('click', function () {
+            list[i].addEventListener('click', function() {
                 for (let j = 0; j < list.length; j++) {
                     list[j].classList.remove('active');
                 }

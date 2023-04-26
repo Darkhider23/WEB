@@ -26,9 +26,18 @@ session_start();
             <div class="signup">
                 <form id="register-form">
                     <label for="chk" aria-hidden="true">Sign up</label>
-                    <input type="text" name="signup-username" id="signup-username" placeholder="User name" required="">
-                    <input type="email" name="signup-email" id="signup-email" placeholder="Email" required="">
-                    <input type="password" name="signup-password" id="signup-password" placeholder="Password" required="">
+                    <div class="username-container">
+                        <input type="text" name="signup-username" id="signup-username" placeholder="User name">
+                        <span id="signup-usernameError" class="error"></span>
+                    </div>
+                    <div class="email-container">
+                        <input type="email" name="signup-email" id="signup-email" placeholder="Email">
+                        <span id="signup-emailError" class="error"></span>
+                    </div>
+                    <div class="password-container">
+                        <input type="password" name="signup-password" id="signup-password" placeholder="Password">
+                        <span id="signup-passwordError" class="error"></span>
+                    </div>
                     <button type="submit">Sign up</button>
                 </form>
             </div>
@@ -36,8 +45,15 @@ session_start();
             <div class="login">
                 <form id="login-form">
                     <label for="chk" aria-hidden="true">Login</label>
-                    <input type="email" name="login-email" id="login-email" placeholder="Email" required="">
-                    <input type="password" id="login-password" name="login-password" placeholder="Password" required="">
+                    <div class="email-container">
+                        <input type="email" name="login-email" id="login-email" placeholder="Email">
+                        <span id="login-emailError" class="error"></span>
+                    </div>
+                    <div class="password-container">
+                        <input type="password" id="login-password" name="login-password" placeholder="Password">
+                        <span id="login-passwordError" class="error"></span>
+                    </div>
+
                     <button type="submit">Login</button>
                 </form>
             </div>
@@ -110,36 +126,60 @@ session_start();
 
         // Add event listener to login form submission
         document.getElementById("login-form").addEventListener("submit", function(event) {
+            document.getElementById("login-emailError").innerHTML = "";
+            document.getElementById("login-passwordError").innerHTML = "";
             event.preventDefault();
 
             // Get email and password inputs from form
             var email = document.getElementById("login-email").value;
             var password = document.getElementById("login-password").value;
-            // Make AJAX request to login.php with form data
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "../process.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    // Parse JSON response
-                    var response = JSON.parse(xhr.responseText);
 
-                    // Update popup message with response message
-                    var popupMessage = document.getElementById("popup-message");
-                    popupMessage.textContent = response.message;
+            var email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+            var password_regex = /^(?=.*\d).{8,}$/
 
-                    // Show custom popup
-                    var popup = document.getElementById("popup-container");
-                    popup.style.display = "flex";
+            var doesErrorExist = false;
+            // Display error symbols next to empty fields
+            if (!email_regex.test(email)) {
+                document.getElementById("login-emailError").innerHTML = "&#x274C;";
+                doesErrorExist = true;
+            }
+            if (!password_regex.test(password)) {
+                document.getElementById("login-passwordError").innerHTML = "&#x274C;";
+                doesErrorExist = true;
+            }
 
-                    // Hide popup after 3 seconds
-                    setTimeout(function() {
-                        popup.style.display = "none";
-                        window.location.href = 'index.php';
-                    }, 1500);
-                }
-            };
-            xhr.send("email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password));
+            if (!doesErrorExist) {
+                // Make AJAX request to login.php with form data
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "../process.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        // Parse JSON response
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        // Update popup message with response message
+                        var popupMessage = document.getElementById("popup-message");
+                        popupMessage.textContent = response.message;
+
+                        // Show custom popup
+                        var popup = document.getElementById("popup-container");
+                        popup.style.display = "flex";
+
+                        // Hide popup after 3 seconds
+                        setTimeout(function() {
+                            if (response.status == "success") {
+
+                                window.location.href = 'index.php';
+                                
+                            }
+                            popup.style.display = "none";
+                        }, 1500);
+                    }
+                };
+                xhr.send("email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password));
+            }
+
         });
 
 
@@ -147,35 +187,62 @@ session_start();
         document.getElementById("register-form").addEventListener("submit", function(event) {
             event.preventDefault();
 
+            document.getElementById("signup-usernameError").innerHTML = "";
+            document.getElementById("signup-emailError").innerHTML = "";
+            document.getElementById("signup-passwordError").innerHTML = "";
+
             // Get name email and password inputs from form
             var name = document.getElementById("signup-username").value;
             var email = document.getElementById("signup-email").value;
             var password = document.getElementById("signup-password").value;
-            // Make AJAX request to login.php with form data
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "../register_handle.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    // Parse JSON response
-                    var response = JSON.parse(xhr.responseText);
 
-                    // Update popup message with response message
-                    var popupMessage = document.getElementById("popup-message");
-                    popupMessage.textContent = response.message;
 
-                    // Show custom popup
-                    var popup = document.getElementById("popup-container");
-                    popup.style.display = "flex";
+            var email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+            var password_regex = /^(?=.*\d).{8,}$/
+            var username_regex = /^(?=.*[A-Z]).{4,}$/
+            var doesErrorExist = false;
+            // Display error symbols next to empty fields
+            if (!username_regex.test(name)) {
+                document.getElementById("signup-usernameError").innerHTML = "&#x274C;";
+                doesErrorExist = true;
+            }
+            if (!email_regex.test(email)) {
+                document.getElementById("signup-emailError").innerHTML = "&#x274C;";
+                doesErrorExist = true;
+            }
+            if (!password_regex.test(password)) {
+                document.getElementById("signup-passwordError").innerHTML = "&#x274C;";
+                doesErrorExist = true;
+            }
+            if (!doesErrorExist) {
+                // Make AJAX request to login.php with form data
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "../register_handle.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        // Parse JSON response
+                        var response = JSON.parse(xhr.responseText);
+                        // Update popup message with response message
+                        var popupMessage = document.getElementById("popup-message");
+                        popupMessage.textContent = response.message;
 
-                    // Hide popup after 3 seconds
-                    setTimeout(function() {
-                        popup.style.display = "none";
-                        window.location.href = 'index.php';
-                    }, 1500);
-                }
-            };
-            xhr.send("username=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password));
+                        // Show custom popup
+                        var popup = document.getElementById("popup-container");
+                        popup.style.display = "flex";
+
+                        // Hide popup after 3 seconds
+                        setTimeout(function() {
+                            if (response.status == "success") {
+                                window.location.href = 'index.php';
+                            }
+                            popup.style.display = "none";
+
+                        }, 1500);
+                    }
+                };
+                xhr.send("username=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password));
+            }
         });
     </script>
 </body>
