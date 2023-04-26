@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) > 0) {
         );
         $_SESSION['user_id'] = $row['iduser'];
         $_SESSION['username'] = $row['name'];
-        $_SESSION['role'] = 'user';
+        $_SESSION['role'] = $row['role'];
         
         // echo "Login Successful";
     } else {

@@ -47,9 +47,12 @@ $result = $conn->query($query);
                     $game_image = strtolower($game_image);
                     echo
                     '<div class="card" data-item="wish">';
+                    echo '<a href="game_page.php?query=';
+                    echo $game_name;
+                    echo '">';
                     echo '<img src="../public/images/';
                     echo $game_image;
-                    echo '.jpg" alt=""><div class="content"><h4>';
+                    echo '.jpg" alt=""></a><div class="content"><h4>';
                     echo $game_name;
                     echo '</h4>';
                     echo '<div class="info"><p>Pricing<br><span>$';
