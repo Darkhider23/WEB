@@ -11,7 +11,7 @@ session_start();
           rel='stylesheet'>
     <link href="../styles.css"
           rel="stylesheet">
-    <title>Document</title>
+    <title>About</title>
 </head>
 <body>
     

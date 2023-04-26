@@ -3,6 +3,7 @@ session_start();
 $conn = mysqli_connect("localhost", "root", "hospital", "games");
 $user_id = $_SESSION['user_id'];
 
+//owned list
 $query = "SELECT games.* FROM games
 INNER JOIN user_games ON games.id = user_games.game_id
 WHERE user_games.user_id = ?";
@@ -10,6 +11,16 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
+
+//wishlist
+$query = "SELECT games.* FROM games
+INNER JOIN wishlist ON games.id = wishlist.game_id
+WHERE wishlist.user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result1 = $stmt->get_result();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +31,7 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="../styles.css" rel="stylesheet">
-    <title>Document</title>
+    <title>My Games</title>
 </head>
 
 <body>
@@ -44,19 +55,48 @@ $result = $stmt->get_result();
                 $game_name = $row['game_name'];
                 $game_price = $row['game_price'];
                 $game_rating = $row['game_rating'];
+                $game_image = preg_replace("/[^a-zA-Z]/", "", $game_name);
+                $game_image = strtolower($game_image);
                 echo
-                    '<div class="card" data-item="owned"><div class="content"><h4>';
-                    echo $game_name;
-                    echo '<br>';
-                    echo $game_price;
-                    echo '<br>';
-                    echo $game_rating;
-                    echo'</h4></div></div>';
+                '<div class="card" data-item="owned">';
+                echo '<img src="../public/images/';
+                echo $game_image;
+                echo '.jpg" alt=""><div class="content"><h4>';
+                echo $game_name;
+                echo '</h4>';
+                echo '<div class="info"><p>Pricing<br><span>$';
+                echo $game_price;
+                echo '</span></p>';
+                echo'<div class="rating">';
+                echo $game_rating;
+                echo '<span class="star">&#9733;</span></div>';
+                echo '</div></div></div>';
+            }
+            while ($row = $result1->fetch_assoc()) {
+                // Access game data
+                $game_id = $row['id'];
+                $game_name = $row['game_name'];
+                $game_price = $row['game_price'];
+                $game_rating = $row['game_rating'];
+                $game_image = preg_replace("/[^a-zA-Z]/", "", $game_name);
+                $game_image = strtolower($game_image);
+                echo
+                '<div class="card" data-item="wish">';
+                echo '<img src="../public/images/';
+                echo $game_image;
+                echo '.jpg" alt=""><div class="content"><h4>';
+                echo $game_name;
+                echo '</h4>';
+                echo '<div class="info"><p>Pricing<br><span>$';
+                echo $game_price;
+                echo '</span></p>';
+                echo'<div class="rating">';
+                echo $game_rating;
+                echo '<span class="star">&#9733;</span></div>';
+                echo '</div></div></div>';
             }
             ?>
-            
     </div>
-
     <?php
     require "../components/footer.php";
     ?>

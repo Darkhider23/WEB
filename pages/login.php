@@ -11,7 +11,7 @@ session_start();
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="../styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>
