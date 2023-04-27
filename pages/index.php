@@ -27,7 +27,7 @@ session_start();
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni at, ad aliquam. </p>
                 <a href="./login.html" class="btn">Join now</a>
             </div>
-            <img src="../public/images/edward.png">
+            <img src="../public/images/edward2.png">
         </div>
     </div>
     <?php

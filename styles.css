@@ -14,11 +14,19 @@
   /* Scroll bar */
   ::-webkit-scrollbar {
       width: 12px;
+      background-color: #050e2d;
   }
 
   ::-webkit-scrollbar-thumb {
       background-color: #1aeee1;
       border-radius: 6px;
+  }
+  ::-webkit-scrollbar-corner{
+    background-color: #fff;
+  }
+  ::-webkit-scrollbar-thumb:horizontal{
+    background-color: #d1b514;
+    border-radius: 3px;
   }
 
   header {
@@ -115,6 +123,9 @@
       background: transparent;
       text-align: center;
       color: #fff;
+  }
+  .search-bar input[type="text"]:focus-visible{
+    outline:none;
   }
 
   ::-webkit-input-placeholder {
@@ -232,7 +243,7 @@
   }
 
   .banner .bg img {
-      width: 400px;
+    width: 700px;
       margin-left:-100px;
   }
 

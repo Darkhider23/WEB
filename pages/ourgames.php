@@ -15,6 +15,8 @@ $result = $conn->query($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="../styles.css" rel="stylesheet">
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <title>Games</title>
 </head>
 
@@ -86,7 +88,13 @@ $result = $conn->query($query);
                 xhr.onload = () => {
                     if (xhr.status === 200) {
                         const results = JSON.parse(xhr.responseText);
-                        // display the results in the dropdown
+                        // if(jQuery.isEmptyObject(results))
+                        // {
+                        //     resultList.innerHTML = '';
+                        //     const li = document.createElement('li');
+                        //     li.innerText = 'No results';
+                        // }
+                            // display the results in the dropdown
                         resultList.innerHTML = '';
                         results.forEach(result => {
                             const li = document.createElement('li');
