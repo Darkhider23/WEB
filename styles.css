@@ -232,7 +232,8 @@
   }
 
   .banner .bg img {
-      width: 600px;
+      width: 400px;
+      margin-left:-100px;
   }
 
   .about {
