@@ -1,21 +1,21 @@
 <?php
 // Start the session
 session_start();
-
+require './connect.php';
 // Establish database connection
-$conn = mysqli_connect("localhost", "root", "hospital", "games");
+// $conn = mysqli_connect("localhost", "root", "hospital", "games");
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+// // Check connection
+// if (!$conn) {
+//     die("Connection failed: " . mysqli_connect_error());
+// }
 
 // Retrieve and sanitize user input
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
 
 // Query the database to retrieve user data
-$sql = "SELECT * FROM user WHERE email = '$email'";
+$sql = "SELECT * FROM users WHERE email = '$email'";
 $result = mysqli_query($conn, $sql);
 
 // Check for a match
@@ -28,11 +28,13 @@ if (mysqli_num_rows($result) > 0) {
             'status' => 'success',
             'message' => 'Login successful!'
         );
-        $_SESSION['user_id'] = $row['iduser'];
+        $_SESSION['user_id'] = $row['id'];
         $_SESSION['username'] = $row['name'];
         $_SESSION['role'] = $row['role'];
-        
-        // echo "Login Successful";
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
+
     } else {
         // Password does not match
 
@@ -40,6 +42,9 @@ if (mysqli_num_rows($result) > 0) {
             'status' => 'error',
             'message' => 'Login failed. Invalid Password.'
         );
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
     }
 } else {
 
@@ -48,9 +53,10 @@ if (mysqli_num_rows($result) > 0) {
         'status' => 'error',
         'message' => 'Login failed. Invalid Email.'
     );
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
 }
-header('Content-Type: application/json');
-echo json_encode($response);
 // echo json_encode(array('response' => $response));
 // Close database connection
 mysqli_close($conn);

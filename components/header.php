@@ -7,7 +7,7 @@ $username_header = $_SESSION['username'];
         <li><a href="./index.php">Home</a></li>
         <li><a href="./ourgames.php">Games</a></li>
         <?php
-        if ( isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
+        if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
             echo '<li><a href="./games.php">My Games</a></li>';
         }
         ?>
@@ -32,3 +32,21 @@ $username_header = $_SESSION['username'];
     </div>
     <div class="toggleMenu" onclick="toggleMenu();"></div>
 </header>
+
+<script>
+    /* Sticky Navbar */
+    window.addEventListener('scroll', function () {
+        var header = document.querySelector('header');
+        header.classList.toggle('sticky', window.scrollY > 0);
+    });
+
+    /* Responsive Navbar */
+
+    function toggleMenu() {
+        const toggleMenu = document.querySelector('.toggleMenu');
+        const nav = document.querySelector('.nav');
+        toggleMenu.classList.toggle('active');
+        nav.classList.toggle('active');
+    }
+
+</script>

@@ -5,8 +5,8 @@ $user_id = $_SESSION['user_id'];
 
 //owned list
 $query = "SELECT games.* FROM games
-INNER JOIN user_games ON games.id = user_games.game_id
-WHERE user_games.user_id = ?";
+INNER JOIN owned ON games.id = owned.game_id
+WHERE owned.user_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -102,20 +102,6 @@ $result1 = $stmt->get_result();
     ?>
 
     <script>
-        /* Sticky Navbar */
-        window.addEventListener('scroll', function() {
-            var header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 0);
-        });
-
-        /* Responsive Navbar */
-
-        function toggleMenu() {
-            const toggleMenu = document.querySelector('.toggleMenu');
-            const nav = document.querySelector('.nav');
-            toggleMenu.classList.toggle('active');
-            nav.classList.toggle('active');
-        }
 
         /* Fiter Card */
 

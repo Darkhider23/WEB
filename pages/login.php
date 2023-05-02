@@ -69,47 +69,6 @@ session_start();
     ?>
 
     <script>
-        /* Sticky Navbar */
-        window.addEventListener('scroll', function() {
-            var header = document.querySelector('header');
-            header.classList.toggle('sticky', window.scrollY > 0);
-        });
-
-        /* Responsive Navbar */
-
-        function toggleMenu() {
-            const toggleMenu = document.querySelector('.toggleMenu');
-            const nav = document.querySelector('.nav');
-            toggleMenu.classList.toggle('active');
-            nav.classList.toggle('active');
-        }
-
-        /* Fiter Card */
-
-        let list = document.querySelectorAll('.list');
-        let card = document.querySelectorAll('.card');
-
-        for (let i = 0; i < list.length; i++) {
-            list[i].addEventListener('click', function() {
-                for (let j = 0; j < list.length; j++) {
-                    list[j].classList.remove('active');
-                }
-
-                this.classList.add('active');
-
-                let dataFilter = this.getAttribute('data-filter');
-
-                for (let k = 0; k < card.length; k++) {
-                    card[k].classList.remove('active');
-                    card[k].classList.add('hide');
-
-                    if (card[k].getAttribute('data-item') == dataFilter || dataFilter == 'all') {
-                        card[k].classList.remove('hide');
-                        card[k].classList.add('active');
-                    }
-                }
-            })
-        }
 
         function showPopup(message) {
             var popupContainer = document.getElementById('popup-container');
@@ -125,7 +84,7 @@ session_start();
 
 
         // Add event listener to login form submission
-        document.getElementById("login-form").addEventListener("submit", function(event) {
+        document.getElementById("login-form").addEventListener("submit", function (event) {
             document.getElementById("login-emailError").innerHTML = "";
             document.getElementById("login-passwordError").innerHTML = "";
             event.preventDefault();
@@ -153,7 +112,7 @@ session_start();
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "../process.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                         // Parse JSON response
                         var response = JSON.parse(xhr.responseText);
@@ -167,11 +126,11 @@ session_start();
                         popup.style.display = "flex";
 
                         // Hide popup after 3 seconds
-                        setTimeout(function() {
+                        setTimeout(function () {
                             if (response.status == "success") {
 
                                 window.location.href = 'index.php';
-                                
+
                             }
                             popup.style.display = "none";
                         }, 1500);
@@ -184,7 +143,7 @@ session_start();
 
 
         // Add event listener to resgiter form submission
-        document.getElementById("register-form").addEventListener("submit", function(event) {
+        document.getElementById("register-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
             document.getElementById("signup-usernameError").innerHTML = "";
@@ -219,7 +178,7 @@ session_start();
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "../register_handle.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-                xhr.onreadystatechange = function() {
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                         // Parse JSON response
                         var response = JSON.parse(xhr.responseText);
@@ -232,7 +191,7 @@ session_start();
                         popup.style.display = "flex";
 
                         // Hide popup after 3 seconds
-                        setTimeout(function() {
+                        setTimeout(function () {
                             if (response.status == "success") {
                                 window.location.href = 'index.php';
                             }

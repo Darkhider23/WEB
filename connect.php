@@ -1,6 +1,6 @@
 <?php
 // Database configuration
-$servername = "127.0.0.1:3306";
+$servername = "localhost";
 $username = "root";
 $password = "hospital";
 $dbname = "games";
@@ -9,13 +9,6 @@ $dbname = "games";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if(!$conn){
+    die("Connection failed" + $conn->connect_error);
 }
-else{
-    echo"Database connection successful!";
-}
-
-// Close connection
-$conn->close();
-?>

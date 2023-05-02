@@ -1,11 +1,6 @@
 <?php
-// Establish database connection
-$conn = mysqli_connect("localhost", "root", "hospital", "games");
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require './connect.php';
 
 // Retrieve and sanitize user input
 $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -18,7 +13,7 @@ $password = mysqli_real_escape_string($conn, $_POST['password']);
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert data into the database
-$sql = "INSERT INTO user (name, email, password, role) VALUES ('$username', '$email', '$hashedPassword', 'user')";
+$sql = "INSERT INTO users (name, email, password, role) VALUES ('$username', '$email', '$hashedPassword', 'user')";
 if (mysqli_query($conn, $sql)) {
     // Registration successful, provide appropriate feedback to the user
     $response = array(
