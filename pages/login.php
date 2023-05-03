@@ -110,7 +110,7 @@ session_start();
             if (!doesErrorExist) {
                 // Make AJAX request to login.php with form data
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "../process.php", true);
+                xhr.open("POST", "../auth/login_handler.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -176,7 +176,7 @@ session_start();
             if (!doesErrorExist) {
                 // Make AJAX request to login.php with form data
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "../register_handle.php", true);
+                xhr.open("POST", "../auth/register_handle.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {

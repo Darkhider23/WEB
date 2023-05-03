@@ -1,6 +1,6 @@
 <?php
 
-require './connect.php';
+require '../utils/connect.php';
 
 // Retrieve and sanitize user input
 $username = mysqli_real_escape_string($conn, $_POST['username']);

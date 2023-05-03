@@ -16,7 +16,7 @@ session_start();
 <body>
 
     <?php
-    require_once "../connect.php";
+    require '../utils/connect.php';
     require "../components/header.php";
     ?>
     <!-- Home Section-->
@@ -24,7 +24,7 @@ session_start();
         <div class="bg">
             <div class="content">
                 <h2>A new home for <br>Gamers</h2>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni at, ad aliquam. </p>
+                <p>Nothing is true, everything is permitted. </p>
                 <a href="./login.html" class="btn">Join now</a>
             </div>
             <img src="../public/images/edward2.png">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "hospital", "games");
+require '../utils/connect.php';
 $user_id = $_SESSION['user_id'];
 
 //owned list

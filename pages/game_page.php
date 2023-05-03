@@ -21,7 +21,7 @@ session_start();
         <div class="bg">
             <?php
             // connect to the database
-            $conn = mysqli_connect('localhost', 'root', 'hospital', 'games');
+            require '../utils/connect.php';
 
             // get the name of the game from the URL parameters
             $name = mysqli_real_escape_string($conn, $_GET['query']);
@@ -33,7 +33,7 @@ session_start();
             $row = mysqli_fetch_assoc($result);
             $game_image = preg_replace("/[^a-zA-Z]/", "", $row['game_name']);
             $game_image = strtolower($game_image);
-            echo '<div class="title"><h1 id="title">' . $row['game_name'] . '</h1></div><div class="content"><p>' . $row['description'] . '</p>';
+            echo '<div class="title"><h1 id="title">' . $row['game_name'] . '</h1></div><div class="content"><p>' . $row['game_description'] . '</p>';
             echo '<div class="image">
                 <img src="../public/images/' . $game_image . '.jpg" alt=""></div>';
             echo '';
@@ -42,7 +42,7 @@ session_start();
             mysqli_close($conn); ?>
             <div class="button-bg">
                 <div class="buttons-container">
-                    <button class="button-arounder">Add to my wishlist</button>
+                    <button class="button-arounder" id='wishlist_button'>Add to my wishlist</button>
                 </div>
             </div>
         </div>
@@ -52,25 +52,37 @@ session_start();
     </div>
 
     <script>
-        $(document).ready(function() {
-  var fontSize = 50; // set initial font size
-  var divWidth = $('#title').width(); // get width of the div
-  var textWidth = $('#title').textWidth(); // get width of the text
-  while (textWidth> divWidth) { // while the text is wider than the div
-    fontSize--; // decrease font size
-    $('#title').css('font-size', fontSize + 'px'); // set new font size
-    textWidth = $('#title').textWidth(); // recalculate text width
-  }
-});
+        const button = document.querySelector('#wishlist_button');
+        button.addEventListener('click', function() {
+            if (button.innerHTML == "Add to my wishlist") {
+                button.innerHTML = "Remove from wishlist";
+                
+            } else {
+                if (button.innerHTML == "Remove from wishlist"){
+                    button.innerHTML = "Add to my wishlist";
+                }
+            }
+        });
 
-// function to calculate the width of the text
-$.fn.textWidth = function() {
-  var html = '<span style="display:none">' + $(this).text() + '</span>';
-  $('body').append(html);
-  var width = $('body').find('span:last').width();
-  $('body').find('span:last').remove();
-  return width;
-}
+        // $(document).ready(function() {
+        //     var fontSize = 50; // set initial font size
+        //     var divWidth = $('#title').width(); // get width of the div
+        //     var textWidth = $('#title').textWidth(); // get width of the text
+        //     while (textWidth > divWidth) { // while the text is wider than the div
+        //         fontSize--; // decrease font size
+        //         $('#title').css('font-size', fontSize + 'px'); // set new font size
+        //         textWidth = $('#title').textWidth(); // recalculate text width
+        //     }
+        // });
+
+        // function to calculate the width of the text
+        // $.fn.textWidth = function() {
+        //     var html = '<span style="display:none">' + $(this).text() + '</span>';
+        //     $('body').append(html);
+        //     var width = $('body').find('span:last').width();
+        //     $('body').find('span:last').remove();
+        //     return width;
+        // }
     </script>
 
 </body>

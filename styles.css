@@ -21,12 +21,14 @@
       background-color: #1aeee1;
       border-radius: 6px;
   }
-  ::-webkit-scrollbar-corner{
-    background-color: #fff;
+
+  ::-webkit-scrollbar-corner {
+      background-color: #fff;
   }
-  ::-webkit-scrollbar-thumb:horizontal{
-    background-color: #d1b514;
-    border-radius: 3px;
+
+  ::-webkit-scrollbar-thumb:horizontal {
+      background-color: #d1b514;
+      border-radius: 3px;
   }
 
   header {
@@ -114,8 +116,8 @@
       margin: 8px 0;
       box-sizing: border-box;
       border-radius: 10px;
-      border:none;
-      border-color:transparent;
+      border: none;
+      border-color: transparent;
       box-shadow: inset 0 5px 5px -5px rgba(0, 0, 0, 0.8),
           inset 5px 0 5px -5px rgba(0, 0, 0, 0.8),
           inset -5px 0 5px -5px rgba(0, 0, 0, 0.8),
@@ -124,8 +126,9 @@
       text-align: center;
       color: #fff;
   }
-  .search-bar input[type="text"]:focus-visible{
-    outline:none;
+
+  .search-bar input[type="text"]:focus-visible {
+      outline: none;
   }
 
   .search-bar input[type="text"]::-webkit-input-placeholder {
@@ -243,8 +246,8 @@
   }
 
   .banner .bg img {
-    width: 700px;
-      margin-left:-100px;
+      width: 700px;
+      margin-left: -100px;
   }
 
   .about {
@@ -312,7 +315,9 @@
       margin: 10px 0;
   }
 
-  .games ul {
+  .games ul,
+  .delete-game ul,
+  .update-game ul {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -320,7 +325,9 @@
       margin-bottom: 20px;
   }
 
-  .games ul li {
+  .games ul li,
+  .delete-game ul li,
+  .update-game ul li {
       list-style: none;
       padding: 10px 20px;
       border-radius: 5px;
@@ -330,7 +337,9 @@
       color: #fff;
   }
 
-  .games ul li.active {
+  .games ul li.active,
+  .delete-game ul li.active,
+  .update-game ul li.active {
       background: #1aeee1;
       color: #050e2d;
       box-shadow: 0 0 10px #1aeee1;
@@ -343,8 +352,8 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      border-radius:30px;
-      padding-top:20px;
+      border-radius: 30px;
+      padding-top: 20px;
       box-shadow: inset 0 5px 5px -5px rgba(0, 0, 0, 0.8),
           inset 5px 0 5px -5px rgba(0, 0, 0, 0.8),
           inset -5px 0 5px -5px rgba(0, 0, 0, 0.8),
@@ -917,18 +926,73 @@
       border-bottom-right-radius: var(--radius);
   }
 
-  .add-game-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* Style for the search input */
+  .add-game-container input[type="text"],
+  .add-game-container input[type="number"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border-radius: 10px;
+      border: none;
+      border-color: transparent;
+      box-shadow: inset 0 5px 5px -5px rgba(0, 0, 0, 0.8),
+          inset 5px 0 5px -5px rgba(0, 0, 0, 0.8),
+          inset -5px 0 5px -5px rgba(0, 0, 0, 0.8),
+          inset 0 -5px 5px -5px #1aefefab;
+      background: transparent;
+      text-align: center;
+      color: #fff;
   }
 
-  .add-game-form *{
-    width: 30%;
-    height: 5vh;
+  .add-game-container input[type="text"]:focus-visible {
+      outline: none;
   }
-  .add-game-form input[type="submit"]{
-    width:20vh;
+
+  .add-game-container input[type="text"]::-webkit-input-placeholder {
+      text-align: center;
   }
-        
+
+  .delete-game,
+  .update-game,
+  .add-game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10vh;
+  }
+
+  .delete-game h1,
+  .update-game h1,
+  .add-game-container h1 {
+      color: #fff;
+  }
+
+  .button-container input[type="submit"] {
+      min-width: 10vh;
+      min-height: 3vh;
+      box-sizing: border-box;
+      border-radius: 10px;
+      border: none;
+      border-color: transparent;
+      background: #14b4aa;
+      text-align: center;
+      color: #fff;
+      margin: 2vh;
+  }
+
+  .button-container input[type="submit"]:hover {
+      scale: 1.2;
+      transition: .7s;
+  }
+
+  .button-container input[type="submit"]::file-selector-button {
+      background-color: red;
+  }
+
+  .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }

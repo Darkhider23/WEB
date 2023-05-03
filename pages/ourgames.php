@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "hospital", "games");
+require '../utils/connect.php';
 $user_id = $_SESSION['user_id'];
 
 $query = "SELECT * FROM games";
@@ -47,6 +47,7 @@ $result = $conn->query($query);
                     $game_rating = $row['game_rating'];
                     $game_image = preg_replace("/[^a-zA-Z]/", "", $game_name);
                     $game_image = strtolower($game_image);
+                    $image_type = $row['image_type'];
                     echo
                     '<div class="card" data-item="wish">';
                     echo '<a href="game_page.php?query=';
@@ -54,7 +55,9 @@ $result = $conn->query($query);
                     echo '">';
                     echo '<img src="../public/images/';
                     echo $game_image;
-                    echo '.jpg" alt=""></a><div class="content"><h4>';
+                    echo '.';
+                    echo $image_type;
+                    echo '" alt=""></a><div class="content"><h4>';
                     echo $game_name;
                     echo '</h4>';
                     echo '<div class="info"><p>Pricing<br><span>$';

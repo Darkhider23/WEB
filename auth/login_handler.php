@@ -1,14 +1,7 @@
 <?php
 // Start the session
 session_start();
-require './connect.php';
-// Establish database connection
-// $conn = mysqli_connect("localhost", "root", "hospital", "games");
-
-// // Check connection
-// if (!$conn) {
-//     die("Connection failed: " . mysqli_connect_error());
-// }
+require '../utils/connect.php';
 
 // Retrieve and sanitize user input
 $email = mysqli_real_escape_string($conn, $_POST['email']);

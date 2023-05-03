@@ -15,7 +15,7 @@ $username_header = $_SESSION['username'];
         <li><a href="./about.php">About</a></li>
         <?php
         if (isset($_SESSION['username'])) {
-            echo '<li><a href="../logout.php">Logout</a></li>';
+            echo '<li><a href="../auth/logout.php">Logout</a></li>';
         } else {
 
             echo '<li><a href="./login.php">Login</a></li>';
